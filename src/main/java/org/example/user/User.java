@@ -1,4 +1,4 @@
-package org.example;
+package org.example.user;
 
 import java.sql.Timestamp;
 
@@ -80,13 +80,13 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "[" +
                 "id=" + id +
                 ", userid='" + userid + '\'' +
                 ", name='" + name + '\'' +
                 ", age=" + age +
                 ", membership=" + membership +
                 ", signupDate=" + signupDate +
-                '}';
+                ']';
     }
 }

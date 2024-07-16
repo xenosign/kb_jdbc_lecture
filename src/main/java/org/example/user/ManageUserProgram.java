@@ -1,4 +1,4 @@
-package org.example;
+package org.example.user;
 
 import java.util.Scanner;
 
@@ -33,13 +33,11 @@ public class ManageUserProgram {
             System.out.println("6. 로그아웃");
             System.out.print("원하는 작업 번호를 입력하세요: ");
             int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+            scanner.nextLine();
 
             if (choice == 1) {
-                // 회원 목록 조회
                 manageUser.getAllUsers();
             } else if (choice == 2) {
-                // 회원 추가
                 System.out.print("추가할 회원의 ID: ");
                 String newId = scanner.nextLine();
                 System.out.print("이름: ");
@@ -57,18 +55,15 @@ public class ManageUserProgram {
                 manageUser.addUser(newUser);
                 System.out.println("회원이 성공적으로 추가되었습니다.");
             } else if (choice == 3) {
-                // 특정 이름이 포함된 유저 검색
                 System.out.print("검색할 이름의 일부를 입력하세요: ");
                 String namePart = scanner.nextLine();
                 manageUser.searchUsersByName(namePart);
             } else if (choice == 4) {
-                // 회원 삭제
                 System.out.print("삭제할 회원의 ID를 입력하세요: ");
                 int deleteId = scanner.nextInt();
                 scanner.nextLine(); // Consume newline
                 manageUser.deleteUserById(deleteId);
             } else if (choice == 5) {
-                // 회원 정보 수정
                 System.out.print("수정할 회원의 ID를 입력하세요: ");
                 int updateId = scanner.nextInt();
                 scanner.nextLine(); // Consume newline
@@ -85,11 +80,10 @@ public class ManageUserProgram {
 
                 manageUser.updateUserDetails(updateId, newName, newPassword, newAge, newMembership);
             } else if (choice == 6) {
-                // 로그아웃
                 manageUser.logoutUser();
                 loggedInUser = null;
                 System.out.println("로그아웃 되었습니다.");
-                break; // 프로그램 종료
+                break;
             } else {
                 System.out.println("잘못된 선택입니다. 다시 시도하십시오.");
             }
