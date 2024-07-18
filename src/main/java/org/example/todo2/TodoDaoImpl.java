@@ -7,25 +7,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TodoDaoImpl implements TodoDao {
+    // 접속 정보를 TodoDaoImpl 자체가 가지고 있도록 한 코드
     private final Connection conn;
-
+    // 해당 클래스를 생성하고 사용할 때 DB에 접속이 되면 되므로, 생성 시점에 JDBCUtil 로 부터 접속 정보를 받아서
+    // 스스로의 멤버 변수에 보관한다
     public TodoDaoImpl() {
         this.conn = JDBCUtil.getConnection();
     }
 
+    // 특정 사용자가 작성한 Todo 의 개수를 구하는 메서드
     @Override
     public int getTotalCount(String user_id) {
+        // SELECT COUNT(*) 쿼리를 이용하여 해당 쿼리문의 수행 결과가 몇개의 데이터를 가져오는지 구하는 쿼리
         String sql = "SELECT COUNT(*) FROM todo WHERE user_id=?";
+        // user_id 에 따라 쿼리가 변경 되므로 PreparedStatement 사용
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, user_id);
+            // 완성 된 PreparedStatement 을 수행!
             try (ResultSet rs = pstmt.executeQuery()) {
-                while (rs.next()) {
+                // while 구문이 실행 되었다는 것은 쿼리가 정상적으로 작동하였다는 것이므로 데이터 개수를 구할 수 있다 
+                while (rs.next()) {                   
+                    // 데이터의 개수는 COUNT(*)에 의해 첫번째 컬럼에 만들어 졌으므로, 첫번째 컬럼의 값을 가져오기                    
                     return rs.getInt(1);
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        // 쿼리가 실패하여 while 문이 실행이 안되면 여기 까지 오게 되므로 데이터가 없다는 의미의 0 을 리턴하다
         return 0;
     }
 
