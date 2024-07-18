@@ -23,7 +23,7 @@ public class UserDaoImpl implements UserDao{
             pstmt.setString(2, password);
             try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
-                    loginUser = new UserVo(rs.getString("user_id"), rs.getString("name"), rs.getString("password"), null);
+                    loginUser = new UserVo(rs.getString("user_id"), rs.getString("name"), rs.getString("password"), rs.getTimestamp("at"));
                 };
             }
         } catch (SQLException e) {

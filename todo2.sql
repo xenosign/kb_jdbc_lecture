@@ -1,6 +1,5 @@
 use jdbc_ex;
 
-DROP TABLE IF EXISTS todo_user;
 CREATE TABLE todo_user
 (
     user_id    VARCHAR(50) PRIMARY KEY,
@@ -17,7 +16,6 @@ VALUES ('tetz', '이효석', '1234'),
        ('na', '나건우', '1234');
 
 
-DROP TABLE IF EXISTS todo;
 CREATE TABLE todo
 (
     id           INT AUTO_INCREMENT PRIMARY KEY,
