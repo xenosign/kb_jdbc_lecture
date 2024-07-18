@@ -15,6 +15,22 @@ public class TodoDaoImpl implements TodoDao {
     }
 
     @Override
+    public  int getTotalCount(String userId) {
+        String sql = "select count(*) from todo where user_id=?";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, userId);
+            try(ResultSet rs= stmt.executeQuery()) {
+                rs.next();
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+
+    @Override
     public void getTodosByUserId(String userId) {
         String sql = "SELECT * FROM todo WHERE user_id=?";
 

@@ -1,3 +1,5 @@
+use jdbc_ex;
+
 CREATE TABLE todo_user
 (
     user_id    VARCHAR(50) PRIMARY KEY,

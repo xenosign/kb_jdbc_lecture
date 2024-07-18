@@ -25,7 +25,10 @@ public class TodoProgram {
 
         TodoDaoImpl todoDao = new TodoDaoImpl();
 
+        int totalTodoCount = todoDao.getTotalCount(loggedInUser.getUserId());
         System.out.println(loggedInUser.getName() + " 님 반갑습니다!");
+        System.out.println(loggedInUser.getName() + " 님의 총 Todo 개수 : " + totalTodoCount);
+
         while (true) {
             System.out.println("====== TodoList 프로그램 ======");
             System.out.println("1. Todo 전체 목록 조회");

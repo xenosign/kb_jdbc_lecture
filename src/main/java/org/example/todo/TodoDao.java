@@ -1,6 +1,7 @@
 package org.example.todo;
 
 public interface TodoDao {
+    int getTotalCount(String userId);
     void getTodosByUserId(String userId);
     void getCompletedTodosByUserId(String userId);
     void getUncompletedTodosUserId(String userId);
