@@ -25,7 +25,7 @@ public class TodoProgram {
 
         TodoDaoImpl todoDao = new TodoDaoImpl();
 
-        int totalTodoCount = todoDao.getTotalCount(loggedInUser.getUserId());
+        int totalTodoCount = todoDao.getTotalCount(loggedInUser.getUser_id());
         System.out.println(loggedInUser.getName() + " 님 반갑습니다!");
         System.out.println(loggedInUser.getName() + " 님의 총 Todo 개수 : " + totalTodoCount);
 
@@ -44,25 +44,25 @@ public class TodoProgram {
             scanner.nextLine();
 
             if (choice == 1) {
-                todoDao.getTodosByUserId(loggedInUser.getUserId());
+                todoDao.getTodosByUserId(loggedInUser.getUser_id());
             } else if (choice == 2) {
-                todoDao.getUncompletedTodosUserId(loggedInUser.getUserId());
+                todoDao.getUncompletedTodosUserId(loggedInUser.getUser_id());
             } else if (choice == 3) {
-                todoDao.getCompletedTodosByUserId(loggedInUser.getUserId());
+                todoDao.getCompletedTodosByUserId(loggedInUser.getUser_id());
             } else if (choice == 4) {
                 System.out.print("완료 처리할 Todo 의 ID 숫자를 입력해 주세요 : ");
                 int id = scanner.nextInt();
                 scanner.nextLine();
-                todoDao.makeTodoCompleted(id, loggedInUser.getUserId());
+                todoDao.makeTodoCompleted(id, loggedInUser.getUser_id());
             } else if (choice == 5) {
                 System.out.print("추가할 Todo 의 내용을 입력해 주세요 : ");
                 String todo = scanner.nextLine();
-                todoDao.createTodo(todo, loggedInUser.getUserId());
+                todoDao.createTodo(todo, loggedInUser.getUser_id());
             } else if (choice == 6) {
                 System.out.print("삭제 처리할 Todo 의 ID 숫자를 입력해 주세요 : ");
                 int id = scanner.nextInt();
                 scanner.nextLine();
-                todoDao.deleteTodo(id, loggedInUser.getUserId());
+                todoDao.deleteTodo(id, loggedInUser.getUser_id());
             } else if (choice == 7) {
                 todoDao.getAllTodosWithUserName();
             } else if (choice == 8) {
