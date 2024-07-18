@@ -1,4 +1,6 @@
-package org.example.todo;
+package org.example.todo.old;
+
+import org.example.todo.UserVo;
 
 public interface UserDaoOld {
     void createUser(UserVo user);

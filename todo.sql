@@ -8,6 +8,8 @@ CREATE TABLE todo_user
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+SELECT * FROM todo_user;
+
 INSERT INTO todo_user (user_id, name, password)
 VALUES ('tetz', '이효석', '1234'),
        ('siwan', '김시완', '1234'),
@@ -31,3 +33,5 @@ VALUES ('tetz', 'PPT 찍기'),
        ('siwan', '강사님~'),
        ('na', '다트 우승하기'),
        ('na', 'RM 활동하기');
+
+SELECT * FROM todo;
