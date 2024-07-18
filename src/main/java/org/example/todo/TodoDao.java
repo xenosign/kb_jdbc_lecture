@@ -8,4 +8,5 @@ public interface TodoDao {
     void makeTodoCompleted(int id, String userId);
     void createTodo(String todo, String userId);
     void deleteTodo(int id, String userId);
+    void getAllTodosWithUserName();
 }

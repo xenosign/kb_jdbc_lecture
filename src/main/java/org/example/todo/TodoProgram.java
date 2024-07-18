@@ -37,7 +37,8 @@ public class TodoProgram {
             System.out.println("4. Todo 완료 처리");
             System.out.println("5. Todo 추가");
             System.out.println("6. Todo 삭제");
-            System.out.println("7. 프로그램 종료");
+            System.out.println("7. Todo 전체 목록 + 작성자 확인");
+            System.out.println("8. 프로그램 종료");
             System.out.print("원하는 작업 번호를 입력하세요: ");
             int choice = scanner.nextInt();
             scanner.nextLine();
@@ -63,6 +64,8 @@ public class TodoProgram {
                 scanner.nextLine();
                 todoDao.deleteTodo(id, loggedInUser.getUserId());
             } else if (choice == 7) {
+                todoDao.getAllTodosWithUserName();
+            } else if (choice == 8) {
                 return;
             } else {
                 System.out.println("잘못된 선택입니다. 다시 시도하십시오.");

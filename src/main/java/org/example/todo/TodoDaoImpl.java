@@ -15,11 +15,11 @@ public class TodoDaoImpl implements TodoDao {
     }
 
     @Override
-    public  int getTotalCount(String userId) {
+    public int getTotalCount(String userId) {
         String sql = "select count(*) from todo where user_id=?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, userId);
-            try(ResultSet rs= stmt.executeQuery()) {
+            try (ResultSet rs = stmt.executeQuery()) {
                 rs.next();
                 return rs.getInt(1);
             }
@@ -48,7 +48,7 @@ public class TodoDaoImpl implements TodoDao {
                     TodoVo todoData = new TodoVo(id, user_id, todo, is_completed, created_at);
                     todos.add(todoData);
                 }
-                System.out.println("===== "+ userId + "님의 Todo 전체 목록 =====");
+                System.out.println("===== " + userId + "님의 Todo 전체 목록 =====");
                 if (todos.size() > 0) {
                     todos.forEach((todo) -> System.out.println(todo));
                 } else {
@@ -78,8 +78,8 @@ public class TodoDaoImpl implements TodoDao {
                     TodoVo todoData = new TodoVo(id, user_id, todo, is_completed, created_at);
                     completedTodos.add(todoData);
                 }
-                
-                System.out.println("===== "+ userId + "님의 Todo 완료 목록 =====");
+
+                System.out.println("===== " + userId + "님의 Todo 완료 목록 =====");
                 if (completedTodos.size() > 0) {
                     completedTodos.forEach((todo) -> System.out.println(todo));
                 } else {
@@ -111,7 +111,7 @@ public class TodoDaoImpl implements TodoDao {
 
                     uncompletedTodos.add(todoData);
                 }
-                System.out.println("===== "+ userId + "님의 Todo 미완료 목록 =====");
+                System.out.println("===== " + userId + "님의 Todo 미완료 목록 =====");
                 if (uncompletedTodos.size() > 0) {
                     uncompletedTodos.forEach((todo) -> System.out.println(todo));
                 } else {
@@ -177,4 +177,32 @@ public class TodoDaoImpl implements TodoDao {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void getAllTodosWithUserName() {
+        String sql = "SELECT t.id, t.user_id, u.name, t.todo, t.is_completed, t.created_at " +
+                     "FROM todo t " +
+                     "JOIN todo_user u ON t.user_id = u.user_id " +
+                     "ORDER BY t.id ASC";
+
+        try (Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String userId = rs.getString("user_id");
+                String userName = rs.getString("name");
+                String todo = rs.getString("todo");
+                boolean isCompleted = rs.getBoolean("is_completed");
+                String createdAt = rs.getTimestamp("created_at").toString();
+
+                System.out.printf("id: %d, user_id: %s, 작성자 이름: %s, todo: %s, is_completed: %b, created_at: %s%n",
+                        id, userId, userName, todo, isCompleted, createdAt);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+
 }
