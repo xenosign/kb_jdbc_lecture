@@ -12,7 +12,9 @@ repositories {
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
+    // MySQL 접속용 라이브러리
     implementation 'com.mysql:mysql-connector-j:8.3.0'
+    // 롬복 관련 라이브러리
     compileOnly 'org.projectlombok:lombok:1.18.30'
     annotationProcessor 'org.projectlombok:lombok:1.18.30'
     testCompileOnly'org.projectlombok:lombok:1.18.30'
