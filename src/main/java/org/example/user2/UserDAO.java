@@ -36,6 +36,7 @@ public class UserDAO {
         String sql = "SELECT * FROM user_table";
         List<UserVO> users = new ArrayList<>();
 
+
         try (Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {

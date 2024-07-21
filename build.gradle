@@ -19,6 +19,9 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.30'
     testCompileOnly'org.projectlombok:lombok:1.18.30'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.30'
+    // MongoDB 라이브러리
+    implementation 'org.mongodb:mongodb-driver-sync:5.0.0'
+    implementation 'ch.qos.logback:logback-classic:1.2.11'
 }
 
 tasks.withType(JavaCompile) {
