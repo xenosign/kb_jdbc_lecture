@@ -1,4 +1,4 @@
-package org.example2;
+package org.mongo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,7 +8,7 @@ import org.bson.types.ObjectId;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserVo {
+public class UserPojo {
     private ObjectId id;
     private String name;
     private int age;
